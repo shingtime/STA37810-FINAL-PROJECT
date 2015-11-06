@@ -6,8 +6,10 @@ output: pdf_document
  
 We write a function with upperbounds and sizes as parameters.
 To generate the given random variables, we use Inverse Transform Sampling.
-i.e. we calculate CDF for the truncated exponential distribution and find its inverse function.
+i.e. we calculate CDF for the truncated exponential distribution $\frac{1-\exp(-yx)}{1-\exp(-yB)}$
+and find its inverse function. $x=\frac{-\log((1-z)(1-\exp(-yB))}{y}$ and plug in a unif(0,1) r.v.
 
+  Gibbs sampling generates r.v's from the marginal distribution.
 ```{r}
 gibbs<-function(B,size){
   

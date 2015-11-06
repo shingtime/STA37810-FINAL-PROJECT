@@ -5,8 +5,7 @@ output: pdf_document
 
 
 We write a Metropolis-Hastings algoritm to generate X~beta(6,4).
-We select a r.v. from unif(0,1) as a starting value and a Beta jumping distribution  
-where c is a parameter in our function. Later on we can test MH algoritm with differnt c's
+We select a r.v. from unif(0,1) as a starting value and a $Beta( c\phi old,c(1-\phi old) )$ jumping distribution where c is a parameter in our function. Later on we can test MH algoritm with differnt c's.
 10 percent of iterations will be treated as burn-in
 ```{r}
 MHalg<-function(iter,c){
@@ -46,9 +45,10 @@ We first start a simulation with c=1, and 10000 draws. Perform KS test to determ
 approximately follow Beta(6,4)
 ```{r}
 draw=MHalg(10000,1)
-par(mfrow=c(1,3)) 
+par(mfrow=c(1,3),oma=c(2,2,2,2)) 
 plot(draw); acf(draw); hist(draw,freq=FALSE) 
 title("C=1", outer=TRUE)
+ 
 
 ks.test(draw,a1) 
 ```
@@ -56,7 +56,7 @@ ks.test(draw,a1)
 Now we simulate with c=0.1, 2.5, 10.
 ```{r}
 draw=MHalg(10000,0.1)
-par(mfrow=c(1,3)) 
+par(mfrow=c(1,3),oma=c(2,2,2,2)) 
 plot(draw); acf(draw); hist(draw,freq=FALSE)  
 ks.test(draw,a1) 
 title("c=0.1", outer=TRUE)
@@ -64,7 +64,7 @@ title("c=0.1", outer=TRUE)
 \newpage
 ```{r}
 draw=MHalg(10000,2.5)
-par(mfrow=c(1,3)) 
+par(mfrow=c(1,3),oma=c(2,2,2,2)) 
 plot(draw); acf(draw); hist(draw,freq=FALSE)  
 ks.test(draw,a1) 
 title("c=2.5", outer=TRUE)
@@ -72,17 +72,17 @@ title("c=2.5", outer=TRUE)
 \newpage
 ```{r}
 draw=MHalg(10000,10)
-par(mfrow=c(1,3)) 
+par(mfrow=c(1,3),oma=c(2,2,2,2)) 
 plot(draw); acf(draw); hist(draw,freq=FALSE)  
 ks.test(draw,a1) 
 title("c=10", outer=TRUE)
 ```
+\newpage
 Comparing histograms and Kolmogorov–Smirnov statistic, c=10 is the most effective.
-
 Now we lower the iteration to 3000. The result is already very close to beta(6,4)
 ```{r}
 draw=MHalg(3000,10)
-par(mfrow=c(1,3)) 
+par(mfrow=c(1,3),oma=c(2,2,2,2)) 
 plot(draw); acf(draw); hist(draw,freq=FALSE)  
 a1=rbeta(3000,6,4)
 ks.test(draw,a1) 
