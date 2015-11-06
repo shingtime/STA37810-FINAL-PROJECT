@@ -2,7 +2,7 @@
 title: "Metropolis-Hastings for Beta distribution"
 output: pdf_document
 ---
-
+# Chi-Chun Liu, Junxiao Bu
 
 We write a Metropolis-Hastings algoritm to generate X~beta(6,4).
 We select a r.v. from unif(0,1) as a starting value and a $Beta( c\phi old,c(1-\phi old) )$ jumping distribution where c is a parameter in our function. Later on we can test MH algoritm with differnt c's.
